@@ -7,32 +7,38 @@ package del2;
 ❖  Kontrollen för att ha koll på om användaren har skrivit ordet stop eller inte får utföras i vilken av klasserna man vill
  */
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MyInput {
-    private MyCounter counter;//En annan klass som räknar raderna och har koll på antalet tecken
+    //konstruktor
+//Rows, Characters
+    private MyCounter counter = new MyCounter();//En annan klass som räknar raderna och har koll på antalet tecken
+    private ArrayList<String> rows = new ArrayList<String>();
 
-    public MyInput() { //konstruktor
-        this.counter = new MyCounter(); //Rows, Characters
+    public MyInput() {
     }
-    public void processInput() { //Denna funktion läser in texten som användaren skriver.
 
-        String input;
-        Scanner scan = new Scanner(System.in);
-        while(true) {
-            System.out.println("Type a word:");
-            input = scan.nextLine();
-            if (input.contentEquals("stop")) {
-                break;
-            }
-            this.counter.countChars(input);
-            this.counter.addRow();
+    public void processInput(String input) { //Denna funktion läser in texten som användaren skriver.
 
-        }
+
+        this.counter.countChars(input);
+        this.counter.addRow();
+        this.rows.add(input);
+
     }
 
     public void showResult() {
         System.out.println("Rows: " + this.counter.getRows());
         System.out.println("Characters: " + this.counter.getChars());
     }
+
+    public MyCounter getCounter(){
+        return this.counter;
+    }
+    public ArrayList<String> getRows(){
+        return this.rows;
+    }
+
 }
+
