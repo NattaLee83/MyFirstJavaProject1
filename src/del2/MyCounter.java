@@ -1,31 +1,38 @@
 package del2;
-
 public class MyCounter {
-   /* En annan klass som räknar raderna och har koll på antalet tecken
-  Kontrollen för att ha koll på om användaren har skrivit
-  ordet stop eller inte får utföras i vilken av klasserna man vill
- */
-    private int rows;
-    private int chars;
+    private int rows = 0;
+    private int chars = 0;
+    private int words = 0;
+    private String longestWord = new String();
 
-    public MyCounter() {
-        this.chars = 0;
-        this.rows = 0;
+    public void countChars(String str) { //Textradens bokstäver räknas.
+        this.chars += str.length(); //<--plus antal tecken + mellanrum.
     }
+    public void countWords(String str) {
+        String[] strArr = str.split(" ");//Delar upp textraden i en array.
+        this.words += strArr.length;//<--Räknar antalet element (ord).
 
-    public void countChars(String str) {
-        this.chars += str.length();
+        for (String word : strArr) {//<--Kollar genom varje ord i textraden.
+            if (word.length() > this.longestWord.length()) {//<--Kollar om ordet är längre än det nuvarande längsta ordet.
+                this.longestWord = word; //<--Sparar ordet om det är längre än det nuvarande längsta ordet.
+            }
+        }
     }
-
     public void addRow() {
         this.rows++;
     }
-
     public int getRows() {
         return this.rows;
     }
-
     public int getChars() {
         return this.chars;
     }
+    public int getWords() {
+        return this.words;
+    }
+    public String getLongestWord() {
+        return this.longestWord;
+    }
 }
+
+

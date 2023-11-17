@@ -1,44 +1,46 @@
 package del2;
-
-/*
-   Programmet skall bestå av två klasser:
-❖  En klass som läser in text och skriver ut resultatet till användaren
-❖  En annan klass som räknar raderna och har koll på antalet tecken
-❖  Kontrollen för att ha koll på om användaren har skrivit ordet stop eller inte får utföras i vilken av klasserna man vill
- */
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class MyInput {
-    //konstruktor
-//Rows, Characters
     private MyCounter counter = new MyCounter();//En annan klass som räknar raderna och har koll på antalet tecken
-    private ArrayList<String> rows = new ArrayList<String>();
+    private ArrayList<String> rows = new ArrayList<>(); //<--Skapar en Arraylist som innehåller text.
+    public static void main(String[] args) {
+        MyInput test = new MyInput(); //<--MyInput-Skapar en ny objekt av klassen och döper variabeln till test.
 
-    public MyInput() {
+        String userinput; //<--Ny String som heter input.
+        Scanner scan = new Scanner(System.in); //<--Ta in det användaren skriver.
+        while(true) { //<--Varje gång man går igenom Loopen så börjar den om från början
+            System.out.println("Please type one word, followed by enter:");
+            System.out.println("To quit, please type: stop");
+            userinput = scan.nextLine(); //<--Användarens textrad.
+            if (userinput.equals("stop")) {
+                break;
+            }
+            test.processInput(userinput);//<--Kör funktionen.
+        }
+        test.showResult(); //<--Säger till test att köra funktionen.
     }
-
     public void processInput(String input) { //Denna funktion läser in texten som användaren skriver.
 
-
-        this.counter.countChars(input);
-        this.counter.addRow();
-        this.rows.add(input);
-
+        this.counter.countChars(input);//<--Räknar tecken+mellanrum det som finns i input.
+        this.counter.addRow(); //<--Räknar rader +1.
+        this.rows.add(input); //<--Lägger till ny rad till arrayn, till texten.
+        this.counter.countWords(input); //<--Räknar orden.
     }
-
     public void showResult() {
         System.out.println("Rows: " + this.counter.getRows());
         System.out.println("Characters: " + this.counter.getChars());
+        System.out.println("Words: " + this.counter.getWords());
+        System.out.println("Longest word: " + this.counter.getLongestWord());
+        for (String row : this.rows) { //<--Skriver ut användarens textrader.
+            System.out.println(row);
+        }
     }
-
-    public MyCounter getCounter(){
+    public MyCounter getCounter(){ //
         return this.counter;
     }
     public ArrayList<String> getRows(){
         return this.rows;
     }
-
 }
 

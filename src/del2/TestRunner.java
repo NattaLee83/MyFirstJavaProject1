@@ -2,8 +2,6 @@ package del2;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class TestRunner {
@@ -52,6 +50,22 @@ public class TestRunner {
             myCharsTest.processInput(testrow);
         }
         String[] actual = myCharsTest.getRows().toArray(new String[0]);
+
+        //Assert
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void testLongestWord () {
+        //Arrange
+        MyInput myLongestWord = new MyInput();
+        String expected = "Stockholm";
+
+        //Act
+        String[] testlongestword = new String[]{"Stockholm", "Göteborg", "Malmö"};
+        for (String testrow : testlongestword){
+            myLongestWord.processInput(testrow);
+        }
+        String actual = myLongestWord.getCounter().getLongestWord();
 
         //Assert
         assertEquals(expected, actual);

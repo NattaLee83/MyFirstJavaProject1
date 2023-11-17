@@ -2,7 +2,7 @@ package inlamingsuppgiftDel2;
 
 import java.util.Scanner;
 
-public class Del2 {
+public class Main {
 
     public static void main(String[] args) {
         //Skriv ett program som läser in text ifrån kommandoraden
@@ -24,9 +24,6 @@ public class Del2 {
         System.out.println("Lines: " + rows);
         //❖ När användaren är klar skriver programmet ut antal tecken
         // och hur många rader som användaren har skrivit, exklusive raden med ordet stop
-
-
-
 
     }
 
